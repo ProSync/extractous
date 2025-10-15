@@ -66,7 +66,7 @@ impl PdfParserConfig {
     /// Multiple pages within a PDF file might refer to the same underlying image.
     /// If extractUniqueInlineImagesOnly is set to false, the parser will call the EmbeddedExtractor
     /// each time the image appears on a page. This might be desired for some use cases. However,
-    /// to avoid duplication of extracted images, set this to true. The default is true.
+    /// to avoid duplication of extracted images, set this to true.
     /// Note that uniqueness is determined only by the underlying PDF COSObject id, not by file hash
     /// or similar equality metric. If the PDF actually contains multiple copies of the same
     /// image -- all with different object ids -- then all images will be extracted.
@@ -166,7 +166,7 @@ impl OfficeParserConfig {
 
     /// Whether to include headers and footers. This only operates on headers and footers in
     /// Word and Excel, not master slide content in PowerPoint.
-    /// Default: true
+    /// Default: false
     pub fn set_include_headers_and_footers(mut self, val: bool) -> Self {
         self.include_headers_and_footers = val;
         self
@@ -264,7 +264,7 @@ impl TesseractOcrConfig {
     }
 
     /// Sets the color depth of the image to be processed.
-    /// Default: 8.
+    /// Default: 4.
     pub fn set_depth(mut self, val: i32) -> Self {
         self.depth = val;
         self
@@ -288,7 +288,7 @@ impl TesseractOcrConfig {
     }
 
     /// Sets the maximum time in seconds that Tesseract should spend on OCR.
-    /// Default: 120.
+    /// Default: 130.
     pub fn set_timeout_seconds(mut self, val: i32) -> Self {
         self.timeout_seconds = val;
         self

@@ -46,6 +46,9 @@ flate2 = "1.0.33"
 tar = "0.4.41"
 walkdir = "2.5.0"
 
+[workspace]
+# Empty workspace to make this package independent
+
 [profile.release]
 opt-level = 3
 lto = "thin"

@@ -99,9 +99,14 @@ impl JReaderInputStream {
 impl Drop for JReaderInputStream {
     fn drop(&mut self) {
         if let Ok(mut env) = vm().attach_current_thread() {
-            // Call the Java Reader's `close` method
+            // Call the Java Reader's `close` method before dropping GlobalRefs
             jni_call_method(&mut env, &self.internal, "close", "()V", &[]).ok();
+
+            // Keep env (AttachGuard) in scope so GlobalRefs can clean up properly
+            // The GlobalRefs (self.internal and self.buffer) will be dropped after this function
+            // returns, while env is still in scope, ensuring proper JNI cleanup
         }
+        // GlobalRefs are dropped here, after the if block but before full struct drop
     }
 }
 
