@@ -5490,6 +5490,326 @@
                 }
             ],
             "type": "org.apache.xmlbeans.impl.values.XmlAnyTypeImpl"
+        },
+        {
+            "type": "org.apache.poi.poifs.filesystem.POIFSFileSystem",
+            "allDeclaredConstructors": true,
+            "allDeclaredMethods": true,
+            "allDeclaredFields": true
+        },
+        {
+            "type": "org.apache.poi.poifs.filesystem.DirectoryNode",
+            "allDeclaredConstructors": true,
+            "allDeclaredMethods": true,
+            "allDeclaredFields": true
+        },
+        {
+            "type": "org.apache.poi.poifs.filesystem.DocumentInputStream",
+            "allDeclaredConstructors": true,
+            "allDeclaredMethods": true,
+            "allDeclaredFields": true
+        },
+        {
+            "type": "org.apache.poi.poifs.filesystem.Entry",
+            "allDeclaredConstructors": true,
+            "allDeclaredMethods": true,
+            "allDeclaredFields": true
+        },
+        {
+            "type": "org.apache.poi.poifs.filesystem.DocumentEntry",
+            "allDeclaredConstructors": true,
+            "allDeclaredMethods": true,
+            "allDeclaredFields": true
+        },
+        {
+            "type": "org.apache.poi.poifs.filesystem.DirectoryEntry",
+            "allDeclaredConstructors": true,
+            "allDeclaredMethods": true,
+            "allDeclaredFields": true
+        },
+        {
+            "type": "org.apache.poi.poifs.filesystem.impl.POIFSFileSystemImpl",
+            "allDeclaredConstructors": true,
+            "allDeclaredMethods": true,
+            "allDeclaredFields": true
+        },
+        {
+            "type": "org.apache.poi.poifs.filesystem.Ole10Native",
+            "allDeclaredConstructors": true,
+            "allDeclaredMethods": true,
+            "allDeclaredFields": true
+        },
+        {
+            "type": "org.apache.poi.poifs.filesystem.Ole10NativeException",
+            "allDeclaredConstructors": true,
+            "allDeclaredMethods": true,
+            "allDeclaredFields": true
+        },
+        {
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ],
+            "type": "org.openxmlformats.schemas.wordprocessingml.x2006.main.impl.CTObjectImpl"
+        },
+        {
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ],
+            "type": "org.openxmlformats.schemas.wordprocessingml.x2006.main.CTObject"
+        },
+        {
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ],
+            "type": "org.openxmlformats.schemas.wordprocessingml.x2006.main.CTPicture"
+        },
+        {
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ],
+            "type": "org.openxmlformats.schemas.wordprocessingml.x2006.main.impl.CTPictImpl"
+        },
+        {
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ],
+            "type": "org.openxmlformats.schemas.officeDocument.x2006.math.impl.CTOMathParaImpl"
+        },
+        {
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ],
+            "type": "org.openxmlformats.schemas.officeDocument.x2006.math.impl.CTOMathImpl"
+        },
+        {
+            "type": "org.apache.poi.openxml4j.opc.PackageRelationship",
+            "allDeclaredConstructors": true,
+            "allDeclaredMethods": true,
+            "allDeclaredFields": true
+        },
+        {
+            "type": "org.apache.poi.openxml4j.opc.PackageRelationshipCollection",
+            "allDeclaredConstructors": true,
+            "allDeclaredMethods": true,
+            "allDeclaredFields": true
+        },
+        {
+            "type": "org.apache.poi.openxml4j.opc.PackagePart",
+            "allDeclaredConstructors": true,
+            "allDeclaredMethods": true,
+            "allDeclaredFields": true
+        },
+        {
+            "type": "org.apache.poi.openxml4j.opc.PackagePartName",
+            "allDeclaredConstructors": true,
+            "allDeclaredMethods": true,
+            "allDeclaredFields": true
+        },
+        {
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ],
+            "type": "org.openxmlformats.schemas.wordprocessingml.x2006.main.impl.CTTrImpl"
+        },
+        {
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ],
+            "type": "org.openxmlformats.schemas.wordprocessingml.x2006.main.impl.CTTblPrImpl"
+        },
+        {
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ],
+            "type": "org.openxmlformats.schemas.wordprocessingml.x2006.main.impl.CTTblGridImpl"
+        },
+        {
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ],
+            "type": "org.openxmlformats.schemas.wordprocessingml.x2006.main.impl.CTTblBordersImpl"
+        },
+        {
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ],
+            "type": "org.openxmlformats.schemas.wordprocessingml.x2006.main.impl.CTTblLayoutImpl"
+        },
+        {
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ],
+            "type": "org.openxmlformats.schemas.wordprocessingml.x2006.main.impl.CTTblWidthImpl"
+        },
+        {
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ],
+            "type": "org.openxmlformats.schemas.wordprocessingml.x2006.main.impl.CTBookmarkStartImpl"
+        },
+        {
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ],
+            "type": "org.openxmlformats.schemas.wordprocessingml.x2006.main.impl.CTBookmarkEndImpl"
+        },
+        {
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ],
+            "type": "org.openxmlformats.schemas.wordprocessingml.x2006.main.impl.CTRunImpl"
+        },
+        {
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ],
+            "type": "org.openxmlformats.schemas.wordprocessingml.x2006.main.impl.CTFontsImpl"
+        },
+        {
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ],
+            "type": "org.openxmlformats.schemas.wordprocessingml.x2006.main.impl.CTColorImpl"
+        },
+        {
+            "type": "com.microsoft.schemas.office.office.impl.CTOLEObjectImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "com.microsoft.schemas.office.office.impl.STOLETypeImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "com.microsoft.schemas.vml.impl.CTImageDataImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "com.microsoft.schemas.vml.impl.CTShapeImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "org.openxmlformats.schemas.wordprocessingml.x2006.main.impl.CTTblPrExImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
         }
     ],
     "resources": [
@@ -6266,6 +6586,36 @@
         {
             "glob": "jdk/xml/internal/jdkcatalog/JDKCatalog.xml",
             "module": "java.xml"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/ctimagedata4039type.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/ctobject47c9type.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/ctoleobjecte5c0type.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/ctshape5cb5type.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/cttblprex863ftype.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/oleobjectbaccdoctype.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/oleobjectelement.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/shapeaee1doctype.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/shapeelement.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/stoletype716btype.xsb"
         }
     ],
     "serialization": [
