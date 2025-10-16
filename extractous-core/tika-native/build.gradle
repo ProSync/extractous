@@ -81,7 +81,9 @@ graalvmNative {
                     "--enable-https", // Very important https working
                     "-O3",
                     "--parallelism=$numThreads",
-                    "-march=compatibility" // VERY IMPORTANT to use compatibility flag. If not the libs will use the cpu arch of the build machine and will notwork on other CPUs if distributed
+                    "-march=compatibility", // VERY IMPORTANT to use compatibility flag. If not the libs will use the cpu arch of the build machine and will notwork on other CPUs if distributed
+                    "-H:+ReportExceptionStackTraces", // Report detailed stack traces for exceptions
+                    "-H:+ReportUnsupportedElementsAtRuntime" // Allow running despite missing metadata and report what's missing
             )
             jvmArgs.add('-Djava.awt.headless=true')
             requiredVersion = '23' // The minimal GraalVM version, can be `MAJOR`, `MAJOR.MINOR` or `MAJOR.MINOR.PATCH`
