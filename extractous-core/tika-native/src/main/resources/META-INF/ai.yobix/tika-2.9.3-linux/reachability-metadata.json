@@ -5810,6 +5810,204 @@
                     ]
                 }
             ]
+        },
+        {
+            "type": "org.openxmlformats.schemas.drawingml.x2006.main.impl.CTPositiveSize2DImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "org.openxmlformats.schemas.drawingml.x2006.spreadsheetDrawing.impl.CTOneCellAnchorImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "org.openxmlformats.schemas.spreadsheetml.x2006.main.impl.CTDxfImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "com.microsoft.schemas.office.drawing.x2008.diagram.impl.CTDrawingImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "com.microsoft.schemas.office.drawing.x2008.diagram.impl.CTGroupShapeImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "com.microsoft.schemas.office.drawing.x2008.diagram.impl.CTGroupShapeNonVisualImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "com.microsoft.schemas.office.drawing.x2008.diagram.impl.CTShapeImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "com.microsoft.schemas.office.drawing.x2008.diagram.impl.CTShapeNonVisualImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "com.microsoft.schemas.office.drawing.x2008.diagram.impl.DrawingDocumentImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "org.openxmlformats.schemas.drawingml.x2006.main.impl.CTGroupTransform2DImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "org.openxmlformats.schemas.drawingml.x2006.main.impl.CTNonVisualGroupDrawingShapePropsImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "org.openxmlformats.schemas.drawingml.x2006.main.impl.CTPoint2DImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "org.openxmlformats.schemas.drawingml.x2006.main.impl.CTShapeStyleImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "org.openxmlformats.schemas.drawingml.x2006.main.impl.CTTransform2DImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "org.openxmlformats.schemas.drawingml.x2006.main.impl.STAngleImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "org.openxmlformats.schemas.drawingml.x2006.main.impl.STCoordinateImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "org.openxmlformats.schemas.drawingml.x2006.main.impl.STCoordinateUnqualifiedImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "org.openxmlformats.schemas.drawingml.x2006.main.impl.STPositiveCoordinateImpl",
+            "methods": [
+                {
+                    "name": "<init>",
+                    "parameterTypes": [
+                        "org.apache.xmlbeans.SchemaType"
+                    ]
+                }
+            ]
         }
     ],
     "resources": [
@@ -6616,6 +6814,72 @@
         },
         {
             "glob": "org/apache/poi/schemas/ooxml/system/ooxml/stoletype716btype.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/ctdxfa3b1type.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/ctonecellanchor0527type.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/ctpositivesize2d0147type.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/ctdrawingc4f9type.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/ctgroupshape48cbtype.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/ctgroupshapenonvisualf80ctype.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/ctgrouptransform2d411atype.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/ctnonvisualgroupdrawingshapeprops610ctype.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/ctpoint2d8193type.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/ctrelidsfef2type.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/ctshape6416type.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/ctshapenonvisual6121type.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/ctshapestyle81ebtype.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/cttransform2d5deftype.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/drawing324ddoctype.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/relids971edoctype.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/relidselement.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/stangle8074type.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/stcoordinatefae3type.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/stcoordinateunqualified6d2ctype.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/stpositivecoordinatecbfctype.xsb"
+        },
+        {
+            "glob": "org/apache/poi/schemas/ooxml/system/ooxml/stuniversalmeasure148dtype.xsb"
         }
     ],
     "serialization": [
