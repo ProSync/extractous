@@ -1,8 +1,9 @@
 use std::env;
 use std::fs;
-use std::io;
+use std::io::{self, Read};
 use std::path::{Path, PathBuf};
 use std::process::Command;
+use sha2::{Sha256, Digest};
 use walkdir::WalkDir;
 
 fn main() {
@@ -32,14 +33,15 @@ fn main() {
     //println!("cargo:warning=tika_native_dir: {:?}", tika_native_dir);
     let tika_native_dir = out_dir.join("tika-native");
     let mut need_build = false;
-    if is_dir_updated(&tika_native_source_dir, &tika_native_dir) {
-        println!("Lib tika_native files were updated");
+
+    // Use content-hash based change detection (CI-cache friendly, not timestamp-based)
+    if is_source_changed(&tika_native_source_dir, &out_dir) {
+        println!("Lib tika_native source changed, cleaning build artifacts");
         fs_extra::dir::remove(&libs_out_dir).ok();
         fs_extra::dir::remove(&tika_native_dir).ok();
         need_build = true;
-        // Launch the gradle build
     } else {
-        println!("Lib tika_native files were not updated");
+        println!("Lib tika_native source unchanged, checking for existing libs");
     }
 
     // Try to find already built libs
@@ -106,6 +108,70 @@ fn find_already_built_libs(out_dir: &Path) -> Option<PathBuf> {
     None
 }
 
+/// Computes a SHA256 hash of all files in a directory (content-based, not timestamp-based).
+/// This is CI-cache friendly since it doesn't rely on file modification times.
+fn compute_dir_hash(dir: &Path) -> String {
+    let mut hasher = Sha256::new();
+
+    // Collect and sort paths for deterministic ordering
+    let mut paths: Vec<_> = WalkDir::new(dir)
+        .into_iter()
+        .filter_map(|e| e.ok())
+        .filter(|e| e.file_type().is_file())
+        .map(|e| e.path().to_path_buf())
+        .collect();
+    paths.sort();
+
+    for path in paths {
+        // Hash the relative path (for structure changes)
+        if let Ok(relative) = path.strip_prefix(dir) {
+            hasher.update(relative.to_string_lossy().as_bytes());
+        }
+
+        // Hash the file contents
+        if let Ok(mut file) = fs::File::open(&path) {
+            let mut buffer = [0u8; 8192];
+            loop {
+                match file.read(&mut buffer) {
+                    Ok(0) => break,
+                    Ok(n) => hasher.update(&buffer[..n]),
+                    Err(_) => break,
+                }
+            }
+        }
+    }
+
+    format!("{:x}", hasher.finalize())
+}
+
+/// Check if source directory has changed by comparing content hashes.
+/// This is CI-cache friendly - doesn't rely on timestamps which break after git clone.
+fn is_source_changed(src: &Path, out_dir: &Path) -> bool {
+    let hash_file = out_dir.join(".tika-native-source-hash");
+    let current_hash = compute_dir_hash(src);
+
+    // Check if we have a stored hash and if it matches
+    if let Ok(stored_hash) = fs::read_to_string(&hash_file) {
+        if stored_hash.trim() == current_hash {
+            println!("tika-native source unchanged (hash: {})", &current_hash[..12]);
+            return false;
+        }
+        println!("tika-native source hash changed: {} -> {}", &stored_hash.trim()[..12], &current_hash[..12]);
+    } else {
+        println!("tika-native no previous hash found, will build");
+    }
+
+    // Store the new hash for next time
+    let _ = fs::create_dir_all(out_dir);
+    if let Err(e) = fs::write(&hash_file, &current_hash) {
+        println!("cargo:warning=Failed to write hash file: {}", e);
+    }
+
+    true
+}
+
+// Legacy timestamp-based check - kept for reference but no longer used
+#[allow(dead_code)]
 fn is_dir_updated(src: &Path, dest: &Path) -> bool {
     for entry in WalkDir::new(src).into_iter().filter_map(|e| e.ok()) {
         if entry.file_type().is_file() {
@@ -154,12 +220,9 @@ fn gradle_build(
     println!("Using GraalVM JDK found at {}", graalvm_home.display());
     println!("Building tika_native libs this might take a while ... Please be patient!!");
 
-    if is_dir_updated(&tika_native_source_dir, &tika_native_dir) {
-        println!("Lib tika_native files were updated");
-        fs_extra::dir::remove(&tika_native_dir).ok();
-    }
-    // Because build script are not allowed to change files outside of OUT_DIR
-    // we need to copy the tika-native source directory to OUT_DIR and call gradle build there
+    // Because build scripts are not allowed to change files outside of OUT_DIR,
+    // we need to copy the tika-native source directory to OUT_DIR and call gradle build there.
+    // Note: Source change detection is already done in main() using content hashing.
     if !tika_native_dir.is_dir() {
         fs_extra::dir::copy(
             tika_native_source_dir,
