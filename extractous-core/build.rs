@@ -204,6 +204,51 @@ fn is_dir_updated(src: &Path, dest: &Path) -> bool {
     false
 }
 
+/// Find vcvarsall.bat from Visual Studio installation
+#[cfg(target_os = "windows")]
+fn find_vcvarsall() -> String {
+    // Common Visual Studio installation paths
+    let vs_paths = [
+        r"C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat",
+        r"C:\Program Files\Microsoft Visual Studio\2022\Professional\VC\Auxiliary\Build\vcvarsall.bat",
+        r"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat",
+        r"C:\Program Files\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvarsall.bat",
+        r"C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat",
+        r"C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\VC\Auxiliary\Build\vcvarsall.bat",
+        r"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat",
+        r"C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat",
+    ];
+
+    for path in &vs_paths {
+        if Path::new(path).exists() {
+            return path.to_string();
+        }
+    }
+
+    // Try using vswhere to find Visual Studio
+    let vswhere_output = Command::new("cmd")
+        .args(["/C", r"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe -latest -property installationPath"])
+        .output();
+
+    if let Ok(output) = vswhere_output {
+        if output.status.success() {
+            let install_path = String::from_utf8_lossy(&output.stdout).trim().to_string();
+            if !install_path.is_empty() {
+                let vcvarsall = format!(r"{}\VC\Auxiliary\Build\vcvarsall.bat", install_path);
+                if Path::new(&vcvarsall).exists() {
+                    return vcvarsall;
+                }
+            }
+        }
+    }
+
+    panic!(
+        "Could not find vcvarsall.bat. Please install Visual Studio with C++ build tools.\n\
+         Expected locations:\n  - {}\n  - {}\n  - {}",
+        vs_paths[0], vs_paths[1], vs_paths[2]
+    );
+}
+
 // Run the gradle build command to build tika-native
 fn gradle_build(
     tika_native_source_dir: &PathBuf,
@@ -239,13 +284,50 @@ fn gradle_build(
     };
 
     // Launch the gradle build
-    Command::new(gradlew)
-        .current_dir(&tika_native_dir)
-        .arg("--no-daemon")
-        .arg("nativeCompile")
-        .env("JAVA_HOME", graalvm_home)
-        .status()
-        .expect("Failed to build tika-native");
+    // On Windows, we need to run through cmd.exe with the VS x64 environment
+    // to ensure GraalVM native-image uses the correct 64-bit compiler
+    #[cfg(target_os = "windows")]
+    {
+        let vcvarsall = find_vcvarsall();
+        let gradlew_str = gradlew.to_string_lossy();
+        let graalvm_str = graalvm_home.to_string_lossy();
+
+        // Build a batch file content that sets up VS x64 environment and runs gradle
+        // Using a temporary batch file avoids quoting issues with cmd /C
+        let batch_content = format!(
+            "@echo off\r\ncall \"{}\" x64\r\nset JAVA_HOME={}\r\n\"{}\" --no-daemon nativeCompile\r\n",
+            vcvarsall,
+            graalvm_str,
+            gradlew_str
+        );
+        let batch_file = tika_native_dir.join("run_build.bat");
+        fs::write(&batch_file, &batch_content).expect("Failed to write batch file");
+
+        let batch_file_str = batch_file.to_string_lossy();
+        let status = Command::new("cmd")
+            .current_dir(&tika_native_dir)
+            .args(["/C", &batch_file_str])
+            .status()
+            .expect("Failed to build tika-native");
+
+        // Clean up the temporary batch file
+        let _ = fs::remove_file(&batch_file);
+
+        if !status.success() {
+            panic!("Gradle build failed with exit code: {:?}", status.code());
+        }
+    }
+
+    #[cfg(not(target_os = "windows"))]
+    {
+        Command::new(gradlew)
+            .current_dir(&tika_native_dir)
+            .arg("--no-daemon")
+            .arg("nativeCompile")
+            .env("JAVA_HOME", &graalvm_home)
+            .status()
+            .expect("Failed to build tika-native");
+    }
 
     // Decide where to copy the graalvm build artifacts
     let mut copy_to_dirs = vec![libs_out_dir];
